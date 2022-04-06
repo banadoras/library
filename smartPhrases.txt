@@ -4,3 +4,5 @@
   used in OUD
 3-PT
   Helps with low back pain
+4-Pamelor
+  One of the TCAs that helps with pain

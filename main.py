@@ -14,8 +14,8 @@ def sp_entry():
     title = input("Enter smart phrase title: ")
     info = input("Enter info: ")
     Smart_Phrase(title,info)
-    print(f"Number of Smart phrases: {Smart_Phrase.number_of_smart_phrases})")
-    print("Do you want add more smart phrases?")
+    print(f"Smart phrase added, current number of Smart phrases: {Smart_Phrase.number_of_smart_phrases}")
+    print("Do you want add more smart phrases? y=yes n=no")
     answer = input()
     if answer == "y":
       continue
@@ -55,7 +55,6 @@ def save_sp(sp):
 def load_sp():
   with open("smartPhrases.json","r") as sp_json:
     l = json.load(sp_json)
-    print(l)
     for sp in l:
       Smart_Phrase(sp["title"],sp["info"])
 
@@ -72,7 +71,12 @@ def run_prog():
     elif option == "f":
       find_sp(Smart_Phrase.list_of_smart_phrases)
     else:
-      break
+      s = input("Are you sure you want to exit? Did you save added smart phrases? y=yes n=no\n" )
+      if s == "y":
+        break
+      else:
+        #save_sp(Smart_Phrase.list_of_smart_phrases)
+        continue
 
 def find_sp(sp_list):
   w = input("Search smart phrases: ")
