@@ -1,3 +1,5 @@
+import json
+
 class Smart_Phrase:
   number_of_smart_phrases = 0
   list_of_smart_phrases = []
@@ -35,11 +37,13 @@ def display_sp():
 
 def save_sp(sp):
   try:
-    f = open("smartPhrases.txt","a")
+    f = open("smartPhrases.txt","w")
     for p in sp:
-      print(p)
       f.write(f"{sp.index(p) + 1}-{p.title}\n  {p.info}\n")
     f.close()
+    json_object = json.dumps([ob.__dict__ for ob in sp])
+    with open("smartPhrases.json","w") as sp_json:
+     sp_json.write(json_object)
   except:
     print("Could not save file")
   else:
@@ -47,7 +51,16 @@ def save_sp(sp):
   finally:
     print("Thank you!")
 
+
+def load_sp():
+  with open("smartPhrases.json","r") as sp_json:
+    l = json.load(sp_json)
+    print(l)
+    for sp in l:
+      Smart_Phrase(sp["title"],sp["info"])
+
 def run_prog():
+  load_sp()
   while True:
     option = input("What do you want to do?\n-Enter smart phrase (press e)\n-Display smart phrases (press d)\n-Save smart phrases to file (press s)\n-Exit (press x)\n")
     if option == "e":
@@ -58,6 +71,8 @@ def run_prog():
       save_sp(Smart_Phrase.list_of_smart_phrases)
     else:
       break
+
+
 
 run_prog()
       

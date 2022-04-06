@@ -1,4 +1,6 @@
-1-DRG
-  Helps in CRPS
-2-SCS
-  Beneficial in LPLS
+1-drg
+  crps
+2-suboxone
+  used in OUD
+3-PT
+  Helps with low back pain
