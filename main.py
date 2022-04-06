@@ -22,17 +22,17 @@ def sp_entry():
     else:
        break
 
-def display_sp():
+def display_sp(l):
   print("-----------------------------------------------------------------------")
   print("Smart Phrases:")
-  for sp in Smart_Phrase.list_of_smart_phrases:
-    print(f"{Smart_Phrase.list_of_smart_phrases.index(sp) + 1}-{sp.title}")
+  for sp in l:
+    print(f"{l.index(sp) + 1}-{sp.title}")
     print(f"  {sp.info}")
-  if len(Smart_Phrase.list_of_smart_phrases) < 1:
+  if len(l) < 1:
     print("No smart phrases avalaible")
   else:
     print("-----------------------------------------------------------------------")
-    print(f"Number of smart phrases: {len(Smart_Phrase.list_of_smart_phrases) }")
+    print(f"Number of smart phrases: {len(l) }")
   print("")
 
 def save_sp(sp):
@@ -62,17 +62,25 @@ def load_sp():
 def run_prog():
   load_sp()
   while True:
-    option = input("What do you want to do?\n-Enter smart phrase (press e)\n-Display smart phrases (press d)\n-Save smart phrases to file (press s)\n-Exit (press x)\n")
+    option = input("What do you want to do?\n-Enter smart phrase (press e)\n-Display smart phrases (press d)\n-Look up smart phrase (press f)\n-Save smart phrases to file (press s)\n-Exit (press x)\n")
     if option == "e":
       sp_entry()
     elif option == "d":
-      display_sp()
+      display_sp(Smart_Phrase.list_of_smart_phrases)
     elif option == "s":
       save_sp(Smart_Phrase.list_of_smart_phrases)
+    elif option == "f":
+      find_sp(Smart_Phrase.list_of_smart_phrases)
     else:
       break
 
-
-
+def find_sp(sp_list):
+  w = input("Search smart phrases: ")
+  filtered = []
+  for sp in sp_list:
+    if sp.title.lower().find(w.lower()) != -1:
+      filtered.append(sp)
+  display_sp(filtered)
+  
 run_prog()
       
